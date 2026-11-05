@@ -1,3 +1,9 @@
+# Optimized by ci-cost (https://github.com/mariotavarez/ci-cost)
+# Applied 2 optimizations:
+# - [HIGH] Add pip dependency cache to "build-ubuntu" job
+# - [MEDIUM] Add concurrency group to "python_package.yml"
+# Estimated savings: ~5 min/run
+#
 name: Test Python Package
 
 on:
@@ -7,6 +13,10 @@ on:
   pull_request:
     branches: [ develop, feature/**, release/**, hotfix/** ]
 
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
 jobs:
   build-ubuntu:
 
