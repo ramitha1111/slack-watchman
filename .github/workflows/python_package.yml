@@ -1,6 +1,7 @@
 name: Test Python Package
 
 on:
+  workflow_dispatch:
   push:
     branches: [ develop, feature/**, release/**, hotfix/** ]
   pull_request:
